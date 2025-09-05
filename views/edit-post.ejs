@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Post - Mirza</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/stylesheets/edit-post.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__content">
+        <div class="header__left">
+          <a href="profile.html" class="back-link" aria-label="Back to profile">
+            <span class="back-link__icon">←</span>
+            <span class="back-link__text">Back</span>
+          </a>
+          <h1 class="header__title">Edit Post</h1>
+        </div>
+        <nav class="header__nav" aria-label="Main navigation">
+          <a href="profile.html" class="nav__link">Profile</a>
+          <a href="#" class="nav__link">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="editor">
+        <div class="editor__card">
+          <div class="post-meta">
+            <span class="post-meta__handle">@mirza</span>
+            <time class="post-meta__time" datetime="2024-01-15"></time>
+          </div>
+          
+          <form class="editor__form" method="post" action="/update/<%= post._id %>">
+            <div class="field">
+              <label for="post-content" class="field__label">Edit your post</label>
+              <textarea 
+                id="post-content" 
+                name="content" 
+                class="field__textarea" 
+                rows="6" 
+                placeholder="Share your thoughts..."
+                required
+              ><%= post.content %></textarea>
+            </div>
+          
+            <div class="editor__actions">
+              <button type="button" class="button button--secondary">Cancel</button>
+              <button type="submit" class="button button--primary">Update Post</button>
+            </div>
+          </form>
+          
+        </div>
+      </section>
+
+      <section class="preview">
+        <h2 class="preview__title">Preview</h2>
+        <article class="post post--preview">
+          <div class="post__badge">Your post</div>
+          <header class="post__header">
+            <span class="post__handle">@mirza</span>
+            <time class="post__time" datetime="2024-01-15">2 hours ago</time>
+          </header>
+          <div class="post__content">
+            <p><%= post.content %></p>
+          </div>
+          <footer class="post__actions">
+            <button class="action-btn action-btn--like" type="button" disabled>
+              <span class="action-btn__icon">♡</span>
+              <span class="action-btn__text">Like</span>
+            </button>
+            <button class="action-btn action-btn--edit" type="button" disabled>
+              <span class="action-btn__icon">✎</span>
+              <span class="action-btn__text">Edit</span>
+            </button>
+          </footer>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

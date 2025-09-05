@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/stylesheets/signup.css" />
+  </head>
+  <body>
+    <main class="split">
+      <section class="form-pane">
+        <div class="card" role="form" aria-labelledby="signup-title">
+          <header class="card-header">
+            <h1 id="signup-title" class="title">Create your account</h1>
+            <p class="subtitle">Join us and get started in minutes.</p>
+          </header>
+
+          <form class="form" method="post" action="#">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Ada Lovelace" />
+            </div>
+
+            <div class="field">
+              <label for="username">Username</label>
+              <input id="username" name="username" type="text" autocomplete="username" required placeholder="adalovelace" />
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="ada@example.com" />
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" autocomplete="new-password" required placeholder="••••••••" />
+            </div>
+
+            <div class="field">
+              <label for="age">Age</label>
+              <input id="age" name="age" type="number" min="13" inputmode="numeric" required placeholder="18" />
+            </div>
+
+            <button type="submit" class="button">Create account</button>
+            <!-- Added login link for existing users -->
+            <p class="hint">
+              Already have an account?
+              <a class="link" href="/">Sign in</a>
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <aside class="artboard" aria-hidden="true">
+        <div class="pattern"></div>
+        <div class="copy">
+          <h2 class="headline">Modern tools for modern teams</h2>
+          <p class="blurb">Secure, fast, and designed for productivity.</p>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>
