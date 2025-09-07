@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="card" role="form" aria-labelledby="login-title">
+        <header class="card-header">
+          <h1 id="login-title" class="title">Upload a file</h1>
+        </header>
+
+        <form class="form" method="post" action="/upload" enctype="multipart/form-data">
+          <div class="field">
+            <label >type file : </label>
+            <input type="file" name="image" />
+          </div>
+          <button type="submit" class="button">Upload</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

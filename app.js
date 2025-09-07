@@ -1,17 +1,22 @@
 const express = require('express');
 const app = express();
+const upload = require('./config/multer')
 
 const userModel = require("./models/user");
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const postModel = require('./models/post')
+const postModel = require('./models/post');
+const crypto = require('crypto');
+const multer = require('multer');
+const path = require('path');
 
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static("public"))
+app.use(express.static(path.join(__dirname,"public")))
 app.use(cookieParser());
+
 
 app.get('/', (req, res) => {
     res.render('login');
@@ -75,9 +80,11 @@ function isLoggedIn(req, res, next){
 app.get('/profile', isLoggedIn, async (req, res) => {
     let user = await userModel.findOne({username: req.user.username})
                               .populate('post');
-    console.log(user);
     res.render('profile', { user });
 
+})
+app.get('/profile/upload', (req, res) => {
+    res.render('multer');
 })
 
 app.post('/post', isLoggedIn, async (req, res) => {
@@ -106,7 +113,6 @@ app.post('/like/:id', isLoggedIn, async (req, res) => {
     }
 
     await post.save();
-    console.log("Liked post:", post.content);
     res.redirect('/profile');  
 });
 
@@ -122,5 +128,24 @@ app.post('/update/:id', isLoggedIn, async (req, res) => {
     res.redirect('/profile');
 
 } )
+
+app.post('/upload', isLoggedIn ,upload.single('image'), async (req, res) => {
+    console.log("req.user:", req.user); // check karo kya aa raha hai
+    console.log("req.file:", req.file);
+
+    let user = await userModel.findById(req.user.userid);
+
+    if (!user) {
+        return res.status(404).send("User not found!");
+    }
+
+    user.profilepic = req.file.filename;
+    await user.save();
+    console.log("req.user:", req.user);
+
+    res.redirect("/profile");
+
+})
+
 
 app.listen(3000);
